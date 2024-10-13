@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const SearchPage = () => {
   const [tweets, setTweets] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [username, setSearchQuery] = useState('');
   const fetchTweets = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/search?q=${searchQuery}`);
+      const response = await fetch(`http://localhost:5000/api/search?q=${username}`);
       const data = await response.json();
       setTweets(data);
       console.log('dataaaaaaaaaaaaaaaA: ', data)
@@ -16,7 +16,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen p-4"
+    <div className="bg-gray-900 w-full text-white min-h-screen p-4"
       style={{width: '600px'}}
     >
       <h1 className="text-2xl font-bold mb-4">Search Tweets</h1>
@@ -25,7 +25,7 @@ const SearchPage = () => {
         <input 
           type="text" 
           placeholder="Search Tweets" 
-          value={searchQuery} 
+          value={username} 
           onChange={(e) => setSearchQuery(e.target.value)} 
           onKeyPress={(e) => {
             if (e.key === 'Enter'){

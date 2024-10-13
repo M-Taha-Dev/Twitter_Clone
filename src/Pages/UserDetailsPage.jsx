@@ -25,6 +25,7 @@ const UserDetailsPage = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
+
         //http://localhost:5000/api/search/user?username=Babrazam358
         const response = await fetch(`http://localhost:5000/api/search/user?username=${username}`);
         const data = await response.json();
@@ -84,8 +85,16 @@ const UserDetailsPage = () => {
             {userTweets?.map(tweet => (
               <div key={tweet.tweet_id} className="bg-gray-800 border border-gray-700 rounded-md p-4">
                 <p className="mb-2">{tweet.text}</p>
-                {tweet.media_url && <img src={tweet.media_url} alt="Tweet media" style={{ maxWidth: '100%' }} />}
-                <div className="text-gray-400 text-sm">
+{tweet.media_url && (
+  tweet.media_type === 'video' ? (
+    <video controls style={{ maxWidth: '100%' }}>
+      <source src={tweet.media_url} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  ) : (
+    <img src={tweet.media_url} alt="Tweet media" style={{ maxWidth: '100%' }} />
+  )
+)}                <div className="text-gray-400 text-sm">
                   Likes: {tweet.favoriteCount} | Retweets: {tweet.retweetCount} | Views: {tweet.views}
                 </div>
                 <a 
