@@ -17,7 +17,7 @@ const SearchPage = () => {
 
   return (
     <div className="bg-gray-900 w-full text-white min-h-screen p-4"
-      style={{width: '600px'}}
+      // style={{width: '600px'}}
     >
       <h1 className="text-2xl font-bold mb-4">Search Tweets</h1>
       
